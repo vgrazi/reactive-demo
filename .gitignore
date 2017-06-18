@@ -1,0 +1,39 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen### Maven template
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+/exportToHTML/
+.gitignore
+.idea/
+common/common.iml
+common/src/main/resources/
+common/src/test/
+common/target/
+exportToHTML/
+reactiveparent.iml
+reactor/reactor.iml
+reactor/src/main/resources/
+reactor/target/
+rx-java2/rx-java2.iml
+rx-java2/rxjava2.iml
+rx-java2/src/main/resources/
+rx-java2/src/test/
+rx-java2/target/
