@@ -4,11 +4,11 @@ package com.vgrazi.play;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import reactive.PriceTick;
 import reactive.SomeFeed;
 import reactive.SomeListener;
-import reactive.Utils;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;

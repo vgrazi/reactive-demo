@@ -4,12 +4,13 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.flowables.ConnectableFlowable;
-import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.Test;
 import reactive.*;
 import static reactive.Utils.sleep;
 

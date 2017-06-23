@@ -1,7 +1,7 @@
 package com.vgrazi.play;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import reactive.PriceTick;
 import reactive.SomeFeed;
 import reactive.SomeListener;
@@ -15,17 +15,15 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import static reactive.Utils.sleep;
 
-
+ 
 /**
  * Created by victorg on 5/11/2017.
  */
 public class reactor {
 
-    @After
+    @AfterEach
     public void after()
     {
         sleep(30_000);
