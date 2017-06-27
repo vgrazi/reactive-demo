@@ -21,7 +21,7 @@ import static reactive.Utils.sleep;
 /**
  * Created by victorg on 5/11/2017.
  */
-public class reactor {
+public class ReactorTests {
 
     @AfterEach
     public void after()
