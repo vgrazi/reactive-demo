@@ -1,7 +1,7 @@
 package com.vgrazi.reactor;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Test;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactive.PriceTick;
@@ -22,7 +22,7 @@ import static reactive.Utils.isSlowTime;
 import static reactive.Utils.sleep;
 
 public class Samples {
-    @AfterEach
+    @After
     public void after() {
         sleep(10_000);
     }

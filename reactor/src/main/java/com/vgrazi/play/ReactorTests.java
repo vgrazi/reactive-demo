@@ -1,7 +1,7 @@
 package com.vgrazi.play;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Test;
 import reactive.PriceTick;
 import reactive.SomeFeed;
 import reactive.SomeListener;
@@ -23,7 +23,7 @@ import static reactive.Utils.sleep;
  */
 public class ReactorTests {
 
-    @AfterEach
+    @After
     public void after()
     {
         sleep(30_000);
@@ -103,7 +103,7 @@ public class ReactorTests {
                             emitter.error(e);
                         }
                     };
-                    feed.register(listener);
+                            feed.register(listener);
                 }, FluxSink.OverflowStrategy.BUFFER);
 
         ConnectableFlux<PriceTick> hot = flux.publish();
