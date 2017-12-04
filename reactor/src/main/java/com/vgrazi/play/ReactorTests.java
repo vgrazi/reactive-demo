@@ -15,6 +15,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static reactive.Utils.isFastTime;
+import static reactive.Utils.isSlowTime;
 import static reactive.Utils.sleep;
 
  
@@ -64,8 +67,8 @@ public class ReactorTests {
         Flux<Long> slowTick = Flux.interval(Duration.of(3, ChronoUnit.SECONDS));
 
         Flux clock = Flux.merge(
-                slowTick.filter(tick -> isSlowTickTime()),
-                fastTick.filter(tick -> !isSlowTickTime()));
+                slowTick.filter(tick -> isSlowTime()),
+                fastTick.filter(tick -> isFastTime()));
 
         Flux<Date> dateFeed = Flux.interval(Duration.of(1, ChronoUnit.SECONDS))
                 .map(tick -> new Date());
@@ -74,17 +77,8 @@ public class ReactorTests {
                 .subscribe(System.out::println);
     }
 
-
-    private static long start = System.currentTimeMillis();
-
-    public static Boolean isSlowTickTime() {
-        return (System.currentTimeMillis() - start) % 20_000 >= 10_000;
-    }
-
-
-
     @Test
-    public void test() {
+    public void test() throws InterruptedException {
         SomeFeed<PriceTick> feed = new SomeFeed<>();
         Flux<PriceTick> flux =
                 Flux.create(emitter ->
@@ -104,15 +98,13 @@ public class ReactorTests {
                         }
                     };
                             feed.register(listener);
-                }, FluxSink.OverflowStrategy.BUFFER);
+        }, FluxSink.OverflowStrategy.LATEST);
+        ConnectableFlux connectable = flux.publish();
+        connectable.subscribe(x -> System.out.println("1st " + x));
+        Thread.sleep(1000);
+        connectable.subscribe(x -> System.out.println("2nd " + x));
+        connectable.connect();
 
-        ConnectableFlux<PriceTick> hot = flux.publish();
-
-        hot.connect();
-        hot.subscribe(priceTick -> System.out.printf("%s ", priceTick.getDate()));
-        hot.subscribe(priceTick -> System.out.printf("%-4s ", priceTick.getInstrument()));
-        hot.subscribe(priceTick -> System.out.printf("%6.2f%n", priceTick.getPrice()));
-//        hot.subscribe(System.out::println);
     }
 
 
